@@ -1,0 +1,19 @@
+{
+    "users":[
+            {
+                "name":"yacine",
+                "email":"lententeyacine@hotmail.comagv",
+                "password":"000"
+            },
+            {
+                "name":"amine",
+                "email":"yacine@gmail.com",
+                "password":"ddsds0"
+            },
+            {
+                "name":"soko",
+                "email":"lasop@gmail.com",
+                "password":"5487"
+            }
+    ]
+}
