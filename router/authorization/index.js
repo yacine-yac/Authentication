@@ -5,8 +5,9 @@
  * @param {next} next 
  */
 const authRouteHandler=(req,res,next)=>{ 
-    req.isAuthenticated() ? next(): res.redirect('/login')
-
+    const direction =req.originalUrl !="/" ? `/login?redirect=${req.originalUrl}` : "/login";
+    req.isAuthenticated() ? next(): res.redirect(direction)
+next();
 }
 /**
  * It handle acces to uneeded resources authorization
