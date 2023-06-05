@@ -5,12 +5,18 @@
     </head>
 <body>
         <h1>Hello Register</h1>
+        <!-- <img src="f.jpg" > -->
         <form method="POST" action="/signup">
             <input type="text" placeholder="name" name="name">
+            <input type="date" name="birth" placeholder="Birthday">
+            <br>
+            <label for="ml">Male</label><input id="ml" type="radio" name="sex" value="Male"><br>
+            <label for="fm">Girl</label><input id="fm" type="radio" name="sex" value="Famale"><br>
             <input type="email" name="email" placeholder="email">
             <input type="password" name="password" placeholder="password">
 
-            <button type="submit">Send</button>
+            <button id="rs-1" type="submit">Send</button>
         </form>
 </body>
+<script type="module" src="js/register.js"></script>
 </html>
