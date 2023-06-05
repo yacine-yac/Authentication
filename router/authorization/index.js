@@ -5,9 +5,10 @@
  * @param {next} next 
  */
 const authRouteHandler=(req,res,next)=>{ 
-    const direction =req.originalUrl !="/" ? `/login?redirect=${req.originalUrl}` : "/login";
+    const ignoredUrls=['/',"/logout"];
+    const direction = !ignoredUrls.includes(req.originalUrl ) ? `/login?redirect=${req.originalUrl}` : "/login";
     req.isAuthenticated() ? next(): res.redirect(direction)
-next();
+ 
 }
 /**
  * It handle acces to uneeded resources authorization
@@ -20,4 +21,5 @@ const unauthRouteHandler=(req,res,next)=>{
     if(req.isAuthenticated()){ res.redirect('/') ; return; }
     next();
 }
+
 module.exports={unauthRouteHandler,authRouteHandler}
