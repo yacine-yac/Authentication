@@ -7,7 +7,7 @@ export default function location(){
  * @param {string} parameter value looking for 
  * @returns {null | string} 
  */
-function searchUrl(parameter){
+export function searchUrl(parameter){
     const query=window.location.search;
     const usp= new URLSearchParams(query);
     return usp.get(parameter) ;
