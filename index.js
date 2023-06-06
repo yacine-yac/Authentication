@@ -31,7 +31,7 @@ app.set('view engine','ejs')
 
 const {authRouteHandler,unauthRouteHandler}=require('./router/authorization/index.js');
 // middleware
-const unAuthPath=['login',"auth",'register',"signup","js/\.*","css/\.*"].join("|");
+const unAuthPath=["",'login',"auth",'register',"signup","js/\.*","css/\.*"].join("|");
 const regx=new RegExp(`^(?!\/(${unAuthPath})$).*$`,"g");
 app.use(regx,authRouteHandler);
 
@@ -41,7 +41,7 @@ const {auth,direction}=require('./router/auth.js');
 // static routes
 app.use(express.static("./static"));
 //routes
-app.get('/',require('./router/index.js'));
+app.get('/',require('./router/home.js'));
 app.get('/about',require('./router/about.js'));
 app.get('/login',unauthRouteHandler,require('./router/login.js'))
 
