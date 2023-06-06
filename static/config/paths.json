@@ -1,0 +1,5 @@
+{
+    "scriptPath":{
+        "/register":"js/register.js"
+    }
+}
