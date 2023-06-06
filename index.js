@@ -29,17 +29,16 @@ app.use(passport.session());
 // template engine base ejs
 app.set('view engine','ejs')
 
-const {authRouteHandler,unauthRouteHandler}=require('./router/authorization/index.js');
-// middleware
-const unAuthPath=["",'login',"auth",'register',"signup","js/\.*","css/\.*"].join("|");
-const regx=new RegExp(`^(?!\/(${unAuthPath})$).*$`,"g");
-app.use(regx,authRouteHandler);
+// Authorization middleware
+const {authRouteHandler,unauthRouteHandler,authPath}=require('./router/authorization/index.js');
+app.use(authPath,authRouteHandler);
 
 
 // route handlers
 const {auth,direction}=require('./router/auth.js');
 // static routes
 app.use(express.static("./static"));
+app.use(express.static("./templates"));
 //routes
 app.get('/',require('./router/home.js'));
 app.get('/about',require('./router/about.js'));
