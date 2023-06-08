@@ -25,4 +25,12 @@ function signupHandler(req,res,next){
     }
     next();
 }
-module.exports={signupHandler}
+
+function signupAction(req,res){ 
+      if(req.signup.status){
+          req.signup.login();
+      }else{
+          res.status(401).json({message:req.signup.errorMessage,status:req.signup.status})
+      }
+  }
+module.exports={signupHandler,signupAction}

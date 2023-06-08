@@ -50,14 +50,8 @@ app.get('/logout',require('./router/logout.js'));
 app.get('/register',unauthRouteHandler,require('./router/register.js'));
 
 // post
-const {signupHandler}=require('./router/signup')
-app.post('/signup',signupHandler,(req,res)=>{ 
-    if(req.signup.status){
-        req.signup.login();
-    }else{
-        res.status(401).json({message:req.signup.errorMessage,status:req.signup.status})
-    }
-});
+const {signupHandler,signupAction}=require('./router/signup')
+app.post('/signup',signupHandler,signupAction);
 //================================================================
 
 app.listen(3000);
