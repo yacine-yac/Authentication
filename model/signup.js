@@ -18,17 +18,20 @@ class Signup{
                 this.status=false;
                 this.errorMessage=null;
     }
-    checkInputs(){
-        const {name,sex,birth,email,password}=this.req.body;
-        const {isEmail,isDate,isAlpha,isAlphanumeric}=require('validator');
-        console.log(birth,isDate(birth,{strictMode:true}));
-        if(!name || !isAlpha(name)){this.status=false;this.errorMessage="name not exists"; this.next();} 
-        if(!sex || !/^(Famale|Male)$/g.test(sex)){this.status=false;this.errorMessage="sex not exists"; this.next();} 
-        if(!birth || !isDate(birth,{delimiters:['.','/', '-']})){this.status=false;this.errorMessage="birth not exists"; this.next();}
-        if(!email || !isEmail(email)){this.status=false;this.errorMessage="email not exists"; this.next();}
-        if(!password || !isAlphanumeric(password)){this.status=false;this.errorMessage="password not exists"; this.next();}
 
-        this.setUser();
+    checkInputs(validate){
+        const {name,sex,birth,email,password}=this.req.body;
+ 
+        validate.alphabets(name,{message:"Please enter a valid name (with only alphabets)"});
+        validate.email(email,{message:'Please enter a valid  email'});
+        validate.date(birth,{message:'Please enter a valid date Please fill in a complete birthday'});
+        validate.match(sex,["Famale","Male"],{message:"Please select your gender"});
+        validate.alphaNumeric(password,{message:"Enter a password Please enter a valid password (with alphabets,numeric and more then 8 charcters"});
+        validate.error.length > 0 
+                    ? (
+                        this.status=false,
+                        this.errorMessage=validate.error[0],this.next()) 
+                    :   this.setUser();
     }
     setUser(){
         const User=require('./user'),params=Object.values(this.req.body)

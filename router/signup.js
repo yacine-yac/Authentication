@@ -1,5 +1,7 @@
-module.exports=(req,res,next)=>{
+function signupHandler(req,res,next){
  /** *** Sign up Steps
+         * init Signup 
+         * set Signup into Request object
          * check inputs
          * check client
          * generate id for DB
@@ -7,9 +9,12 @@ module.exports=(req,res,next)=>{
          * open session
          * redirect
   *  */
-    const {Signup}= require('../model/signup')
+    const {Signup}= require('../model/signup');
+    const {Validation}=require('../model/filtering/index');
     const sign=new Signup(req,res,next);
-    sign.checkInputs();
+    req.signup=sign;
+    sign.checkInputs(new Validation());
+    sign.addUser(); 
+    next();
 }
-
-module.exports={Signup};
+module.exports={signupHandler}
