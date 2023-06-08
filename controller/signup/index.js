@@ -11,14 +11,17 @@ class SignupController{
     constructor(req,valide){ 
         this.valide=valide;
         this.data=req.body;
-        this.status=false;
-        this.errorMessage=[];
+        this.state=req.signup;
     }
     check(){
-        this.status=true;
+        this.state.status=true;
     }
-    validation(){
-        const {name,sex,birth,email,password}=this.req.body;
+    /**
+     * validate external inputs
+     */
+    validation(){ 
+
+        const {name,sex,birth,email,password}=this.data;
  
         this.valide.alphabets(name,{message:"Please enter a valid name (with only alphabets)"});
         this.valide.email(email,{message:'Please enter a valid  email'});
@@ -27,13 +30,14 @@ class SignupController{
         this.valide.alphaNumeric(password,{message:"Enter a password Please enter a valid password (with alphabets,numeric and more then 8 charcters"});
         this.valide.error.length > 0 
                     ? (
-                        this.status=false,
-                        this.errorMessage=this.valide.error) 
-                    :   this.setUser();
+                        this.state.status=false,
+                        this.state.errorMessage=this.valide.error
+                    ) 
+                    :   this.state.status=true;
     }
     getInputs(){
-        const {name,sex,birth,email,password}=this.req.body;
-        this.status ? {name,sex,birth,email,password} : null;
+        const {name,sex,birth,email,password}=this.data;
+       return this.state.status ? {name,sex,birth,email,password} : null;
     }
 }
 module.exports={SignupController}

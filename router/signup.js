@@ -9,12 +9,20 @@ function signupHandler(req,res,next){
          * open session
          * redirect
   *  */
-    const {Signup}= require('../model/signup');
     const {Validation}=require('../model/filtering/index');
-    const sign=new Signup(req,res,next);
-    req.signup=sign;
-    sign.checkInputs(new Validation());
-    sign.addUser(); 
+    const {SignupController}= require('../controller/signup/index');
+    const {SignupState}=require('../model/signupState.js')
+    req.signup=new SignupState();
+    const signupcontroller=new SignupController(req,new Validation());
+    signupcontroller.check();
+    signupcontroller.validation();
+    if(req.signup.status){
+          const {Signup}= require('../model/signup');
+          const sign=new Signup(req,res,next);
+          req.signup=sign;
+          sign.setUser(signupcontroler.getInputs());
+          sign.addUser();
+    }
     next();
 }
 module.exports={signupHandler}
