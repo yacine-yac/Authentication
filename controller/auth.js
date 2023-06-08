@@ -22,7 +22,7 @@ class AuthenticationController{
 
         validation.email(this.email,{message:{email:"Please, provide a valide email"}});
         validation.alphaNumeric(this.password,{message:{password:"Please, provide a valide password"}});
-        validation.alphabets(this.redirect,{message:"Bad request, check your Url"});
+        this.redirect && validation.alphabets(this.redirect,{message:"Bad request, check your Url"});
         this.error= validation.error;
         return this.error.length>0 ? false : true;
     }
