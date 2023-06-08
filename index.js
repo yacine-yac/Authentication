@@ -35,7 +35,7 @@ app.use(authPath,authRouteHandler);
 
 
 // route handlers
-const {auth,direction}=require('./router/auth.js');
+const {auth,direction,authController}=require('./router/auth.js');
 // static routes
 app.use(express.static("./static"));
 app.use(express.static("./templates"));
@@ -45,7 +45,7 @@ app.get('/about',require('./router/about.js'));
 app.get('/login',unauthRouteHandler,require('./router/login.js'))
 
 
-app.post('/auth' ,auth,direction);
+app.post('/auth',authController,auth,direction);
 app.get('/logout',require('./router/logout.js'));
 app.get('/register',unauthRouteHandler,require('./router/register.js'));
 
