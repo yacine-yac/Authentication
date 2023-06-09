@@ -1,7 +1,7 @@
 module.exports=(req,res,next)=> {
     res.render('../views/index.ejs',{
         title:"Register",
-        templatePath:"../views/register.ejs",
+        templatePath:"../templates/tmpl/register.ejs",
         script:'js/register.js',
         message:null
     })

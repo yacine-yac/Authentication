@@ -16,7 +16,7 @@ class User{
     }
     exists(){
             // check email exists in bdd
-        return true;
+        return false;
     }
     setId(id){
         this.id=id;
