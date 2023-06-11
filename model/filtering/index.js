@@ -12,27 +12,27 @@ class Validation{
      * @param {*} field 
      * @returns {Boolean}
      */
-    date(name,field,{message}){
-        if(!this.filters.isDate(field,{delimiters:['.','/', '-']})){this.error[name]=message};
+    date(field,{message}){
+        if(!this.filters.isDate(field,{delimiters:['.','/', '-']})){this.error=Object.assign(this.error,message);};
     }
-    email(name,field,{message}){console.log('fffff',field);
-        if(!this.filters.isEmail(field)) this.error[name]=message;
+    email(field,{message}){
+        if(!this.filters.isEmail(field))this.error=Object.assign(this.error,message);
     }
-    alphabets(name,field,{message}){
-      if(!this.filters.isAlpha(field))this.error[name]=message;
+    alphabets(field,{message}){
+      if(!this.filters.isAlpha(field))this.error=Object.assign(this.error,message);
     }
-    alphaNumeric(name,field,{message}){
-        if(!this.filters.isAlphanumeric(field)) this.error[name]=message; 
+    alphaNumeric(field,{message}){
+        if(!this.filters.isAlphanumeric(field))this.error=Object.assign(this.error,message);
     }
     /**
      * check if input has a special characters
      * @param {*} field 
      * @param {Array} characters characters that should be checked
      */
-    match(name,field,characters,{message}){
+    match(field,characters,{message}){
         const expressions=characters.join('|');
         const regx= new RegExp(`^(${expressions})$`,'g')
-        if(!regx.test(field)) this.error[name]=message;
+        if(!regx.test(field)) this.error=Object.assign(this.error,message);
     }
 }
 module.exports={Validation};
