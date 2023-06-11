@@ -22,12 +22,16 @@ class Authentication{
      * redirect user to specifc path after login
      * @param {} user user session
      */
-    redirectionResponse(user){
+    login(user){
         const direction =this.auth.req.query.redirect ?? "/"; 
         this.auth.req.logIn(user,(err)=>{
                 if(err){this.responseWithMessage(err,401)}
                 this.auth.req.res.redirect(direction);
             });
-        }
+    }
+    redirect(){
+        const direction = this.auth.redirect ? `/?redirect=${this.auth.redirect}` : '/';
+        this.auth.req.res.redirect(direction);
+    }
 }
 module.exports={Authentication}
