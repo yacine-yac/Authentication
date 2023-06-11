@@ -1,8 +1,7 @@
 const  passport=require('passport')
 require('./startegy')
 
-passport.serializeUser((user,done)=>{
-    // console.log(user,'"""""""')
+passport.serializeUser((user,done)=>{ 
       return  done(null,user) 
 });
 passport.deserializeUser((user,done)=>{ 
