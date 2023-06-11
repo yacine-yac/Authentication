@@ -1,14 +1,33 @@
+
+/**
+ * Handle Authentication Response
+ */
 class Authentication{
+  /**
+   * 
+   * @param {AuthenticationController} auth used to fetch error
+   */
     constructor(auth){
         this.auth=auth;
-        this.message=null;
-        this.redirection=null;
     }
-    setbadRequestMessage(){
-         this.message =this.auth.error;
+    /**
+     * responses will be in json format
+     * @param {AuthError} message
+     * @returns {JSON}
+     */
+    responseWithMessage(message){
+           return this.auth.req.res.json(message);
     }
-    setfailureRedirect(){ 
-      this.redirection=`/login${ this.auth.redirect ? '?redirect='+this.auth.redirect : ""}`;
-    }
+    /**
+     * redirect user to specifc path after login
+     * @param {} user user session
+     */
+    redirectionResponse(user){
+        const direction =this.auth.req.query.redirect ?? "/"; 
+        this.auth.req.logIn(user,(err)=>{
+                if(err){this.responseWithMessage(err)}
+                this.auth.req.res.redirect(direction);
+            });
+        }
 }
 module.exports={Authentication}
