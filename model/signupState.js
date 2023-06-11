@@ -5,7 +5,13 @@
 class SignupState{
     constructor(){
         this.status=null;
-        this.errorMessage=[]
+        this.errorMessage={
+            name:null,
+            birth:null,
+            sex:null,
+            password:null,
+            email:null
+        }
     }
 }
 module.exports={SignupState}
