@@ -15,8 +15,8 @@ class Authentication{
      * @param {AuthError} message
      * @returns {JSON}
      */
-    responseWithMessage(message){
-           return this.auth.req.res.json(message);
+    responseWithMessage(message,status){
+           return this.auth.req.res.status(status).json(message);
     }
     /**
      * redirect user to specifc path after login
@@ -25,7 +25,7 @@ class Authentication{
     redirectionResponse(user){
         const direction =this.auth.req.query.redirect ?? "/"; 
         this.auth.req.logIn(user,(err)=>{
-                if(err){this.responseWithMessage(err)}
+                if(err){this.responseWithMessage(err,401)}
                 this.auth.req.res.redirect(direction);
             });
         }
