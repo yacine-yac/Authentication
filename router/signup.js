@@ -20,7 +20,7 @@ function signupHandler(req,res,next){
           const {Signup}= require('../model/signup');
           const sign=new Signup(req,res,next);
           req.signup=sign;
-          sign.setUser(signupcontroler.getInputs());
+          sign.setUser(signupcontroller.getInputs());
           sign.addUser();
     }
     next();

@@ -17,7 +17,7 @@ class Signup{
                 this.user=null;
     }
     setUser(user){
-        const User=require('./user');
+        const {User}=require('./user');
         // params=Object.values(this.req.body)
         this.user=new User(...Object.values(user));
         this.user.setId(this.generateId());
