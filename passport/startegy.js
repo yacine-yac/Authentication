@@ -28,6 +28,6 @@ async function checking(email,password,callback){
         return callback(null,false,controller.error)
     }
 
-    return callback(null,user.session)
+    return callback(null,{id:user.vMain.id,name:user.vMain.name})
 }
 passport.use("local",auth); 
