@@ -2,15 +2,11 @@
  * Handle user operations 
  */
 class User{
-    constructor(name,sex,birth,email,password){
-        this.id=null;
-        this.name=name;
-        this.sex=sex;
-        this.birth=birth;
-        this.email=email;
-        this.password=password;
-        // this.db=require('../db/config');
-        this.session={name:"amine",age:65}
+    constructor(){
+        this.main=new UserBuilder();
+        this.vMain=null; 
+            this.session={name:"amine",age:65}
+    
     }
     add(){
         // insert into DB
@@ -20,22 +16,28 @@ class User{
             // check email exists in bdd
         return false;
     }
+      setvMain({id,password,name}){ 
+        this.vMain= new UserBuilder();
+        this.vMain.setId(id).setName(name).setPassword(password);
+    }
     setId(id){
         this.id=id;
     }
     async identify(){
         const {DataBase}=require('../db/index');
         const connection=new DataBase();
-        const dbRequest=await connection.query(`SELECT id,password,name from user where email="${email}" `)
-                        .then(response=>{ return {response,state:true}})
+        const dbRequest=await connection.query(`SELECT id,password,name from user where email="${this.main.email}" `)
+                        .then(response=>{ return {response,state:response.length>0 ? true :false}})
                         .catch(error=>{return {error:error.sqlMessage,state:false}});
-     console.log("my response",dbRequest);
-     
+       
+        dbRequest.state && this.setvMain(dbRequest.response[0]);
         return dbRequest.state;
     }
-    checkPassword(){
-
-        return false;
+    async checkPassword(){
+        // compare main.password with vMain.password
+      const bcrypt=require('bcrypt');
+      const check= await bcrypt.compare(this.main.password,this.vMain.password); 
+        return check;
     }
 }
 
@@ -71,9 +73,10 @@ class UserBuilder{
         this.password=password;
         return this;
     }
-    build(){
-        return new User(this.name,this.sex,this.birth,this.email,this.password);
-    }
+    setId(id){
+        this.id=id;
+        return this;
+    } 
 }
 
 
