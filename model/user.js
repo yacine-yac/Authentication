@@ -9,6 +9,8 @@ class User{
         this.birth=birth;
         this.email=email;
         this.password=password;
+        // this.db=require('../db/config');
+        this.session={name:"amine",age:65}
     }
     add(){
         // insert into DB
@@ -20,6 +22,20 @@ class User{
     }
     setId(id){
         this.id=id;
+    }
+    async identify(){
+        const {DataBase}=require('../db/index');
+        const connection=new DataBase();
+        const dbRequest=await connection.query(`SELECT id,password,name from user where email="${email}" `)
+                        .then(response=>{ return {response,state:true}})
+                        .catch(error=>{return {error:error.sqlMessage,state:false}});
+     console.log("my response",dbRequest);
+     
+        return dbRequest.state;
+    }
+    checkPassword(){
+
+        return false;
     }
 }
 
