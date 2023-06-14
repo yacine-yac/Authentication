@@ -34,8 +34,8 @@ class SignupController{
      */
     validation(){ 
         const {name,sex,birth,email,password}=this.data;
-          if(!this.state.status) return ;
-
+          if(this.state.status===false) return ;
+          
         this.valide.alphabets(name,{message:{name:"Please enter a valid name (with only alphabets)"}});
         this.valide.email(email,{message:{email:'Please enter a valid  email'}});
         this.valide.date(birth,{message:{birth:'Please enter a valid date '}});
