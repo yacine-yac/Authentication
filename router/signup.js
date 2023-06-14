@@ -1,4 +1,4 @@
-function signupHandler(req,res,next){
+async function signupHandler(req,res,next){
  /** *** Sign up Steps
          * init Signup 
          * set Signup into Request object
@@ -21,7 +21,7 @@ function signupHandler(req,res,next){
           const sign=new Signup(req,res,next);
           req.signup=sign;
           sign.setUser(signupcontroller.getInputs());
-          sign.addUser();
+         await sign.addUser();
     }
     next();
 }

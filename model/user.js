@@ -1,3 +1,5 @@
+const {DataBase}=require('../db/index');
+const bcrypt=require('bcrypt');
 /**
  * Handle user operations 
  */
@@ -5,12 +7,16 @@ class User{
     constructor(){
         this.main=new UserBuilder();
         this.vMain=null; 
-            this.session={name:"amine",age:65}
-    
     }
-    add(){
-        // insert into DB
-        return true;
+    /** add user into db */
+    async add(){
+        const db=new DataBase();
+        const {email,password,name,birth,sex,id}=this.main;
+        const values=`"${id}","${name}","${sex}","${birth}","${email}",${password}`;
+        const keys=Object.keys(this.main).join(','); 
+        const rq= await db.query(`INSERT INTO user (${keys}) VALUES (${values}) `);
+
+        return rq;
     }
     exists(){
             // check email exists in bdd
@@ -24,7 +30,6 @@ class User{
         this.id=id;
     }
     async identify(){
-        const {DataBase}=require('../db/index');
         const connection=new DataBase();
         const dbRequest=await connection.query(`SELECT id,password,name from user where email="${this.main.email}" `)
                         .then(response=>{ return {response,state:response.length>0 ? true :false}})
@@ -35,8 +40,7 @@ class User{
     }
     async checkPassword(){
         // compare main.password with vMain.password
-      const bcrypt=require('bcrypt');
-      const check= await bcrypt.compare(this.main.password,this.vMain.password); 
+        const check= await bcrypt.compare(this.main.password,this.vMain.password); 
         return check;
     }
 }

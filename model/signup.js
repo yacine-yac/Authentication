@@ -1,4 +1,4 @@
-
+const {User}=require('./user'); 
 
 /**
  * Handle user signup
@@ -16,26 +16,24 @@ class Signup{
                 this.next=next;
                 this.user=null;
     }
-    setUser(user){
-        const {User}=require('./user');
-        // params=Object.values(this.req.body)
-        this.user=new User(...Object.values(user));
-        this.user.setId(this.generateId());
+    setUser({email,password,birth,name,sex}){
+        this.user=new User();
+        this.user.main.setId(this.generateId())
+                      .setEmail(email)
+                      .setPassword(password)
+                      .setName(name)
+                      .setSex(sex)
+                      .setBirth(birth);
     }
-    addUser(){
-            if(this.user?.exists()){
-                this.req.signup.status=false;
-                this.req.signup.errorMessage="User already exists !";
-                this.next();
-            }
-            const insert=this.user?.add();
-            insert 
-                    ? (this.req.signup.status=true ) 
-                    : (
-                        this.req.signup.errorMessage="Insert user error",
-                        this.req.signup.status=false,
-                        this.next()
-                    );
+    async addUser(){
+            await this.user?.add().then(inserted=>{
+                        this.req.signup.status=true;
+                }).catch(error=>{
+                        this.req.signup.status=false;
+                        this.req.signup.errorMessage= error.sqlState==23000 ? "User already exists !":  "Insert user error" ;  
+
+                        this.next();
+                });
     }
     login(){
         const session={id:this.user.id,name:this.user.name};
@@ -45,7 +43,8 @@ class Signup{
         });
     }
     generateId(){
-        return 'fdsfsf';
+        const {v4}=require("uuid");
+        return v4();
     }
 }
 module.exports={Signup}
