@@ -3,6 +3,6 @@ module.exports=(req,res,next)=> {
         title:"Register",
         templatePath:"../templates/tmpl/register.ejs",
         script:'js/register.js',
-        message:null
+        error:{ message:null}
     })
 }
