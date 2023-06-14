@@ -5,6 +5,7 @@ class DataBase{
         this.status=false;
         this.db= this.mysql.createConnection(dbConfiguration);
         this.error=null;
+        this.response=null;
         this.connect();
     }
     async connect(){
@@ -18,12 +19,13 @@ class DataBase{
         }
 
     }
-    async query(query){ 
-
-        const  {results , error, fields}=  this.db.query(query);
-        console.log("end query=============",this.status);
-        
- 
+    query(query){
+        return  new Promise((resolve,reject)=>{
+                        this.db.query(query,(error,response)=>{
+                            if(error) return reject(error);
+                            if(response) return resolve(response);
+                    });
+        });
     }
     disconnect(){
         this.db.end();
