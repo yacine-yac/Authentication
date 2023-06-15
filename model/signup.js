@@ -1,5 +1,5 @@
 const {User}=require('./user'); 
-
+const bcrypt=require('bcrypt');
 /**
  * Handle user signup
  */
@@ -25,13 +25,16 @@ class Signup{
                       .setSex(sex)
                       .setBirth(birth);
     }
+    async encryptPassword(){
+       const hash=await bcrypt.hash(this.user.main.password,10,);
+       this.user.main.setPassword(hash);
+    }
     async addUser(){
             await this.user?.add().then(inserted=>{
                         this.req.signup.status=true;
                 }).catch(error=>{
                         this.req.signup.status=false;
                         this.req.signup.errorMessage= error.sqlState==23000 ? "User already exists !":  "Insert user error" ;  
-
                         this.next();
                 });
     }

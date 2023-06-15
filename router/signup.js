@@ -21,7 +21,8 @@ async function signupHandler(req,res,next){
           const sign=new Signup(req,res,next);
           req.signup=sign;
           sign.setUser(signupcontroller.getInputs());
-         await sign.addUser();
+          await sign.encryptPassword();
+          await sign.addUser();
     }
     next();
 }
