@@ -1,0 +1,34 @@
+:root{
+    /* background colors */
+    --color1:rgba(39,42,55,1);
+    --color2:rgba(50,54,68,1);
+    /* text colors */
+    --color-text-1:  rgba(254,254,254,1);
+    --color-text-2:rgb(114, 122, 137);
+    --color-text-3:rgba(78,84,97,1);
+}
+body{
+    margin: 0px;
+    padding: 0px;
+    background-position: center;
+    background-size: 100% ;
+    background-repeat: no-repeat;
+    background-image: url('/icons/2.jpg') ; 
+}
+a{text-decoration: none;color:var(--color-text-1);}
+header{margin-top: 0px;padding-top: 0px;}
+.centermyself-h{
+    display:flex;
+    align-items: center;
+    /* position: absolute !important;
+     top:0px;left: 0px;right: 0px;bottom: 0px;margin: auto; */
+
+}
+.center-h{
+    display: flex;justify-content: center;
+}
+
+
+
+
+/* login demo page */

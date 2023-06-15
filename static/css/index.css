@@ -1,0 +1,30 @@
+.main{
+    width: 100vw;height:90vh;margin: 0;padding: 0;
+    background-color: var(--color1);position: absolute;
+
+}
+.main   h1{display:contents !important;}
+
+.main-part1{
+    width: 45vw;height:100%;padding-left: 5%;padding-right: 8%;
+    border-right: 3px solid white;
+flex-direction: column;
+ 
+}
+.main-part1 h1{
+    font-size: 3rem;color: var(--color-text-1);
+}
+.main-part1 span{margin-top: 15px;;
+    font-size: 1.0rem;color: var(--color-text-2);
+}
+.main-part1 #demo{
+    width: 70%;height: 60%;
+    padding-left: 10%;padding-right: 10%;
+    margin-top: 5%;
+    border:1px solid red;
+}
+
+
+
+
+/* login demo page */
