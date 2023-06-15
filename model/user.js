@@ -10,25 +10,43 @@ class User{
     }
     /** add user into db */
     async add(){
-        const db=new DataBase();
-        const {email,password,name,birth,sex,id}=this.main;
-        const values=`"${id}","${name}","${sex}","${birth}","${email}",${password}`;
-        const keys=Object.keys(this.main).join(','); 
+        const db=new DataBase(); 
+        const values=Object.values(this.main).reduce((x,y)=>x+`"${y}",`,``).slice(0,-1);
+        const keys=Object.keys(this.main);
         const rq= await db.query(`INSERT INTO user (${keys}) VALUES (${values}) `);
 
         return rq;
     }
+    /**
+     * check if user exists or no
+     * @returns Boolean
+     */
     exists(){
-            // check email exists in bdd
-        return false;
+            // check email exists in bdd 
+                const db=new DataBase();
+                const userexist= db.query(`SELECT id  FROM user where email="${this.main.email}"`)
+                            .then(x=>{
+                                return x.length>0 ?{exist:true}: {exist:false,id:x[0].id};
+                            }).catch(y=>{
+                                return {exist:false};
+                            })
+        return userexist;
     }
-      setvMain({id,password,name}){ 
+    /**
+     * build user object (main property)
+     * @param {{id:string,password:string,name:string}} param0 
+     */
+    setvMain({id,password,name}){ 
         this.vMain= new UserBuilder();
         this.vMain.setId(id).setName(name).setPassword(password);
     }
     setId(id){
         this.id=id;
     }
+    /**
+     * identify user by email and return his properties (password,id,name);
+     * @returns Boolean
+     */
     async identify(){
         const connection=new DataBase();
         const dbRequest=await connection.query(`SELECT id,password,name from user where email="${this.main.email}" `)
@@ -38,6 +56,10 @@ class User{
         dbRequest.state && this.setvMain(dbRequest.response[0]);
         return dbRequest.state;
     }
+    /**
+     * compare password provide by user into password stored in db
+     * @returns Boolean
+     */
     async checkPassword(){
         // compare main.password with vMain.password
         const check= await bcrypt.compare(this.main.password,this.vMain.password); 
