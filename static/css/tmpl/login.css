@@ -1,0 +1,61 @@
+.main-part1{ 
+    width: 45vw;height:100%;
+    /* padding-left: 5%;padding-right: 8%; */
+flex-direction: column;display: flex; align-self: center;
+ 
+}
+.main-part1 h1{ 
+    margin-left: 3%;
+    font-size: 2.5rem;color: var(--color-text-1);
+}
+.main-part1 > span{
+    margin-left: 5%;
+    font-size: 1.0rem;color: var(--color-text-2);
+}
+.main-part1 > div{ 
+    width: 70%;height: 50%;
+    padding-left: 10%;padding-right: 10%;
+    margin-top: 5%;
+    flex-direction: column;
+}
+
+
+
+form{ 
+    height: 100%; 
+    display:flex;
+    position: relative;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+}
+form label{
+    width: 90%;height: 20px;
+    /* margin: 10px; */
+    margin-top: 5%;
+    padding: 14px;
+    background-color: var(--color2);
+     cursor: pointer;
+}
+form label svg{width:32px;height:25px;}
+label:focus-within{transition: 0.44s ease-in; border: 1px solid white;}
+label input{
+    width:90%;height:100%;padding: 2px;
+    background-color: var(--color2);margin: 0px;margin-left: 5px;
+    font-size: 16px; color:white;
+}
+form span{
+    width: 100%;height: 20px; 
+    padding-left: 15px; 
+    margin-top: 4px;
+    color: var(--color3);opacity: 0.7;
+}
+button[type="submit"]{
+    width: 40%;height: 40px;border-radius: 20px;
+    /* margin-top: 8%; */
+    background-color: var(--color3);
+}
+.message{margin: 0px;width: 80%; text-align: center;}
+.message a{
+    color: var(--color-text-2);
+}
