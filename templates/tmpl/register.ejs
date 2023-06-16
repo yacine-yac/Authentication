@@ -1,13 +1,35 @@
-<h1>Hello Register</h1>
-        <!-- <img src="f.jpg" > -->
-        <form method="POST" action="/signup">
-            <input type="text" placeholder="name" name="name">
-            <input type="date" name="birth" placeholder="Birthday">
-            <br>
-            <label for="ml">Male</label><input id="ml" type="radio" name="sex" value="Male"><br>
-            <label for="fm">Girl</label><input id="fm" type="radio" name="sex" value="Famale"><br>
-            <input type="email" name="email" placeholder="email">
-            <input type="password" name="password" placeholder="password">
-
-            <button id="rs-1" type="submit">Send</button>
-</form> 
+<div class="main-part2 center-v">
+    <div class="main-rej">
+        <label>Join us now!</label>
+        <h2>Create new account</h2>
+        <span>Already a memeber? <a active-mode="false" href="/" >Login</a></span>
+                <!-- <img src="f.jpg" > -->
+        <form class="form-global" method="POST" action="/signup">
+                    <label for="name">
+                        <svg width="64px" height="64px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><defs><style>.cls-1{fill:none;stroke:#727a89;stroke-miterlimit:10;stroke-width:1.91px;}</style></defs><rect class="cls-1" x="1.5" y="4.36" width="21" height="15.27"></rect><line class="cls-1" x1="4.36" y1="8.18" x2="12" y2="8.18"></line><line class="cls-1" x1="4.36" y1="12" x2="12" y2="12"></line><line class="cls-1" x1="4.36" y1="15.82" x2="10.09" y2="15.82"></line><rect class="cls-1" x="14.86" y="8.18" width="3.82" height="3.82"></rect></g></svg>
+                        <input type="text" placeholder="Full Name" name="name">
+                    </label>
+                    <label for="birth"><input id="birth" type="date" name="birth" placeholder="Birthday"></label>
+                    <label for="sex">
+                        <select name="sex">
+                            <option value="Male">Male</option>
+                            <option value="Famle">Famle</option>
+                        </select>
+                    </label>
+                    <label for="email">
+                        <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"/><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/><g id="SVGRepo_iconCarrier"> <path d="M4 7.00005L10.2 11.65C11.2667 12.45 12.7333 12.45 13.8 11.65L20 7" stroke="#727a89" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/> <rect x="3" y="5" width="18" height="14" rx="2" stroke="#727a89" stroke-width="2" stroke-linecap="round"/> </g></svg>
+                        <input type="email" name="email" placeholder="email">
+                    </label>
+                    <label for="password">
+                        <svg width="64px" height="64px" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M17.408 3.412a1.974 1.974 0 0 0 0-2.82 1.973 1.973 0 0 0-2.819 0l-.29.29-.59-.59a1.009 1.009 0 0 0-1.65.35l-.35-.35a1.004 1.004 0 1 0-1.42 1.42l.35.35a1.033 1.033 0 0 0-.58.58l-.35-.35a1.004 1.004 0 0 0-1.42 1.42L9.879 5.3l-3.02 3.01c-.01.01-.02.03-.03.04A4.885 4.885 0 0 0 5 8a5 5 0 1 0 5 5 4.885 4.885 0 0 0-.35-1.83c.01-.01.03-.02.04-.03l7.718-7.728zM5 15a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="#727a89" fill-rule="evenodd"></path> </g></svg>
+                        <input type="password" name="password" placeholder="password">
+                    </label>
+                    <label type="checkbox">
+                        <input type="checkbox" name="politique">
+                        <span> Agree to our Terms, Privacy Policy and Cookies Policy.</span> 
+                    </label>
+                    <br>
+                    <button id="rs-1" type="submit">Sign up</button>
+        </form>
+    </div>
+</div>
