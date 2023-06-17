@@ -2,16 +2,23 @@
 <html>
     <head>
         <title><%= title %></title>
+        <link rel="stylesheet" href="./css/global.css">
+        <link rel="stylesheet" href="./css/structure/header.css">
+        <link rel="stylesheet" href="./css/index.css">
+        <link rel="stylesheet" href="./css/tmpl/login.css">
     </head>
 <body>
-        <h1><%= title %></h1>
-        <a href="/">Login</a>
-        <div id="demo">
-                <%- include(templatePath)  %>
-        </div>
-        <footer>
-            <h1><%= error.message %></h1>
-        </footer>
+    <header>
+        <h2 class="">User App</h2>
+    </header>
+    <div class="main" id="demo">
+           <%- include(templatePath)  %>
+    </div>
+    <% if(error['message']){ %>
+    <div class="footer-messager layer-x1">
+                <h1><%= error.message %></h1>
+    </div>
+    <% } %>
 </body>
 <script type="module" src="<%= script  %>"></script>
 </html>

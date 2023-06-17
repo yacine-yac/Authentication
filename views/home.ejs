@@ -2,13 +2,34 @@
 <html>
     <head>
         <title>Home</title>
+        <link rel="stylesheet" href="css/home.css">
+        <link rel="stylesheet" href="css/global.css">
+        <link rel="stylesheet" href="css/structure/header.css">
     </head>
 <body>
-        <h1>Hello Home </h1>
-        <h2>your name id <%= name %></h2>
-        <h2>dfsfdsfsf</h2>
-        <a href="/about">About</a>
-        <br>
-        <a href="/logout">LogOut</a>
+    <header>
+        <h2>User app</h2>
+        <label>
+            <a href="/logout">
+                <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M17.4399 14.62L19.9999 12.06L17.4399 9.5" stroke="#727a89" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M9.76001 12.0601H19.93" stroke="#727a89" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M11.76 20C7.34001 20 3.76001 17 3.76001 12C3.76001 7 7.34001 4 11.76 4" stroke="#727a89" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+            </a>
+        </label>
+    </header>
+    <div class="cont center">
+        <div class="cont1 center-v">
+                 <h1>Hello Home </h1>
+                <p>User's information :</p>
+                <ul>
+                    <li>Name: <span>Yacine</span> </li>
+                    <li>Birth:<span>2022-02-02</span></li>
+                    <li>Sex: <span>Male</span> </li>
+                </ul>
+                <div class="center">
+                    <nav class="center">
+                     <a href="/about">About</a>
+                    </nav>
+                </div>
+        </div>
+    </div>
 </body>
 </html>
