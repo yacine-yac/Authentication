@@ -11,18 +11,14 @@
 body{
     margin: 0px;
     padding: 0px;
-    background-position: center;
-    background-size: 100% ;
-    background-repeat: no-repeat;
-    background-image: url('/icons/2.jpg') ; position: relative;
 }
 
 /* default tag style */
 a{text-decoration: none;}
 input{border: 0px;outline: none;}
 header{margin-top: 0px;padding-top: 0px;}
-button{outline: none;border: 0px;cursor: pointer;}
-
+button,select{outline: none;border: 0px;cursor: pointer;}
+li{list-style-type: none;}
 /* align */
 .centermyself-h{
     display:flex;
@@ -34,10 +30,14 @@ button{outline: none;border: 0px;cursor: pointer;}
 .center-h{
     display: flex;justify-content: center;
 }
-
+.center-v{display: flex;align-items: center; }
+.center{display: flex;align-items: center;justify-content: center;}
 .layer-x1{position: absolute;z-index: 100; }
 .bottom-self{
     margin: auto;bottom: 5%;position: absolute;
 }
+
+
+
 
 

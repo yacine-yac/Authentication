@@ -11,3 +11,4 @@ header h2{
     font-family: sans-serif;
     margin-left: 10px; 
 }
+header label{float: right;}
