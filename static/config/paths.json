@@ -1,5 +1,9 @@
 {
     "scriptPath":{
         "/register":"js/register.js"
+    },
+    "stylePath":{
+        "/register":"css/tmpl/register.css"
     }
+
 }
