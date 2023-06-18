@@ -1,45 +1,46 @@
-# Authentication System based Express Js.
+# Authentication System based on Express.js
 
-## Introduction:
-This app is build using `node js`, which handle user interactions like Authentication & Authorization.
-It enable junior learners to have an idea how Authentication systems are build.
+## Introduction
 
-1. Purposes:
-   with this project will be learn:
-   
-* Learn how to handle user requests.
-* Authenticate user based credientials.
-* Register a user in database.
-* Implement Authorization middleware.
-* Handle dynamic and static routes.
-* Create router dom.
+This app is built using Node.js and Express.js, which handle user interactions like authentication and authorization. It enables junior learners to have an idea of how authentication systems are built.
 
-## Dev Envirment:
-this app run on node js dev envirment and mysql for database management system.
+## Purposes
 
-The dev server is running using supervisor command.
+With this project, you will learn how to:
 
-```command line
+- Handle user requests
+- Authenticate users based on credentials
+- Register users in a database
+- Implement authorization middleware
+- Handle dynamic and static routes
+- Create router dom
+
+## Development Environment
+
+This app runs on a Node.js development environment and MySQL for database management system.
+
+The development server is running using the `supervisor` command.
+
      supervisor index.js
-```
-**Changes .env file variables values appropriate to your envirment**
 
-## App endpoints:
-This app has a limited ressources
-* **/** : root app 
-* **/register** : sign up user
-* **/about** : it's a protected page
-* **/\*** : for the rest of page it will be redirected into 404 page.
+Change the `.env` file variables values according to your environment.
 
+## App endpoints
 
-## Folders structure.
+This app has a limited number of resources:
 
-* **router**: routes handlers.
-* **controller**: controllers classes responsible on the validation of external inputs.
-* **model** : classes responsible for providing data.
-* **db** : handling database operations.
-* **passport** : handle authentication operations.
-* **static** : static ressources like icons, style and scripts.
-* **views** : web pages will be matched by routes.
-* **templates** : provide templates.
+- `/`: root app
+- `/register`: sign up user
+- `/about`: it's a protected page
+- `/*`: for the rest of pages, it will be redirected to a 404 page.
 
+## Folder structure
+
+- `router`: route handlers
+- `controller`: controller classes responsible for validating external inputs
+- `model`: classes responsible for providing data
+- `db`: handling database operations
+- `passport`: handling authentication operations
+- `static`: static resources like icons, style and scripts
+- `views`: web pages matched by routes
+- `templates`: providing templates
