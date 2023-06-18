@@ -65,6 +65,12 @@ class User{
         const check= await bcrypt.compare(this.main.password,this.vMain.password); 
         return check;
     }
+    fetchData(columns){
+        const db= new DataBase();
+        const response=db.query(`select ${columns.join(",")} from user where id="${this.main.id}" `)
+        .then(x=>x.length>0 ? x[0] : {error:'user not found'} ).catch(err=>err);
+        return response;
+    }
 }
 
 /**

@@ -1,9 +1,11 @@
-module.exports=(req,res)=>{
-
+module.exports=async(req,res)=>{
+    
      if(req.isAuthenticated()==false){
           const redirected=require('./index');
           redirected(req,res);
-     }else{ 
-          res.render('../views/home.ejs',{name:req.user.name});
+     }else{
+           const data =require('../model/fetchUserData');
+           const {name,birth,sex}=await data(req?.user.id);
+           res.render('../views/home.ejs',{name,birth,sex});
      }
 }
