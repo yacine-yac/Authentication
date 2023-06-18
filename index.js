@@ -48,10 +48,14 @@ app.get('/login',unauthRouteHandler,require('./router/login.js'))
 app.post('/auth',authController,auth);
 app.get('/logout',require('./router/logout.js'));
 app.get('/register',unauthRouteHandler,require('./router/register.js'));
-
+// app.get('/register',unauthRouteHandler,require('./router/register.js'));
+// console.log(module)
 // post
 const {signupHandler,signupAction}=require('./router/signup')
 app.post('/signup',signupHandler,signupAction);
+
+// 404 error page
+app.use(require('./router/404'))
 //================================================================
 
 app.listen(3000);
