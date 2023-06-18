@@ -8,6 +8,7 @@ async function route(path,node){
       const template= await fetching.text();
       node.innerHTML="";
       node.insertAdjacentHTML("afterbegin",template);
+      setCurrentStateHistory(path);
       script(path);
       Style(path);
 }
@@ -31,5 +32,16 @@ function Style(path){
             linkstyle.type="text/css";
             document.head.append(linkstyle);
       }
+}
+
+export function setStateHistory(path){
+      const state={template:document.getElementById('demo').innerHTML};
+      history.pushState(state,undefined,path);
+}
+function setCurrentStateHistory(path){
+      history.replaceState({
+            template:document.getElementById('demo').innerHTML
+      },undefined,path);
+
 }
 export default route;
