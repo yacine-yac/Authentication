@@ -12,7 +12,7 @@
         <h2 class="">User App</h2>
     </header>
     <div class="main" id="demo">
-           <%- include(templatePath)  %>
+          <% if(templatePath){%> <%- include(templatePath)  %> <% } %>
     </div>
     <% if(error['message']){ %>
     <div class="footer-messager layer-x1">
