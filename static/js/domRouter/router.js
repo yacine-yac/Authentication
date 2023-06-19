@@ -4,13 +4,14 @@
  */ 
 import paths  from "../../config/paths.json" assert {type:"json"};
 async function route(path,node){
-      const fetching=await fetch(`tmpl${path}.ejs`);
+      const fetching=await fetch(`tmpl${path}.ejs`); 
+      script(path);
+      Style(path);
       const template= await fetching.text();
       node.innerHTML="";
       node.insertAdjacentHTML("afterbegin",template);
       setCurrentStateHistory(path);
-      script(path);
-      Style(path);
+
 }
 /**
  * Charge script for template if exists
