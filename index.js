@@ -1,6 +1,8 @@
 const express=require('express') 
 const app=express();
 
+// envirment variables
+require('dotenv').config();
 // parse incoming data
 const multer=require("multer");
 app.use(express.json());
@@ -56,4 +58,4 @@ app.post('/signup',signupHandler,signupAction);
 app.use(require('./router/404'))
 //================================================================
 
-app.listen(3000);
+app.listen(process.env.HOST_PORT);
