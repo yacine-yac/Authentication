@@ -1,7 +1,7 @@
 const {dbConfiguration}=require('./config');
 class DataBase{
     constructor(){
-        this.mysql=require('mysql'); 
+        this.mysql=require('mysql2'); 
         this.status=false;
         this.db= this.mysql.createConnection(dbConfiguration);
         this.error=null;
@@ -15,7 +15,7 @@ class DataBase{
             this.status=true;
         }catch(error){
             this.status=false;
-            this.error=error
+            this.error=error;  
         }
 
     }

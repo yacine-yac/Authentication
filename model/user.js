@@ -13,7 +13,7 @@ class User{
         const db=new DataBase(); 
         const values=Object.values(this.main).reduce((x,y)=>x+`"${y}",`,``).slice(0,-1);
         const keys=Object.keys(this.main);
-        const rq= await db.query(`INSERT INTO user (${keys}) VALUES (${values}) `);
+        const rq= await db.query(`INSERT INTO users (${keys}) VALUES (${values}) `);
 
         return rq;
     }
@@ -24,7 +24,7 @@ class User{
     exists(){
             // check email exists in bdd 
                 const db=new DataBase();
-                const userexist= db.query(`SELECT id  FROM user where email="${this.main.email}"`)
+                const userexist= db.query(`SELECT id  FROM users where email="${this.main.email}"`)
                             .then(x=>{
                                 return x.length>0 ?{exist:true}: {exist:false,id:x[0].id};
                             }).catch(y=>{
@@ -49,7 +49,7 @@ class User{
      */
     async identify(){
         const connection=new DataBase();
-        const dbRequest=await connection.query(`SELECT id,password,name from user where email="${this.main.email}" `)
+        const dbRequest=await connection.query(`SELECT id,password,name from users where email="${this.main.email}" `)
                         .then(response=>{ return {response,state:response.length>0 ? true :false}})
                         .catch(error=>{return {error:error.sqlMessage,state:false}});
        
@@ -67,7 +67,7 @@ class User{
     }
     fetchData(columns){
         const db= new DataBase();
-        const response=db.query(`select ${columns.join(",")} from user where id="${this.main.id}" `)
+        const response=db.query(`select ${columns.join(",")} from users where id="${this.main.id}" `)
         .then(x=>x.length>0 ? x[0] : {error:'user not found'} ).catch(err=>err);
         return response;
     }
