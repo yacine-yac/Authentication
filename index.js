@@ -2,7 +2,7 @@ const express=require('express')
 const app=express();
 
 // envirment variables
-require('dotenv').config();
+const {parsed}=require('dotenv').config();
 // parse incoming data
 const multer=require("multer");
 app.use(express.json());
@@ -11,13 +11,29 @@ app.use(multer().none());
 
 const flash=require('connect-flash');
 app.use(flash());
-
-// session config
+// redis session store
+const redis=require('redis');
+const redisStore=require('connect-redis').default;
 const session=require('express-session');
+
+// const redisStore=nredisConnect(session);
+const redisClient=redis.createClient({
+    host:parsed.REDIS_HOST,
+    port:parsed.REDIS_PORT
+});
+redisClient.connect().catch(err=>console.log(err))
+redisClient.on('error', function (err) {
+    console.log('Could not establish a connection with redis. ' + err);
+});
+redisClient.on('connect', function (err) {
+    console.log('Connected to redis successfully');
+});
+// session config
 app.use(session({
     name:"holako",
     secret:'esgen',
     cookie: {expires:60*60*24*1000},
+    store:new redisStore({client:redisClient}),
     resave:false,
     saveUninitialized:false
 }));
