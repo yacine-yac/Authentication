@@ -18,12 +18,10 @@ const session=require('express-session');
 
 // const redisStore=nredisConnect(session);
 const redisClient=redis.createClient({
-    // host:parsed.REDIS_HOST,
-    // port:parsed.REDIS_PORT
-    password: 'Wz3XH5vZbyYjxKpg52HvKHtoRiw8VsJE',
+    password: parsed.REDIS_PASSWORD ,
     socket: {
-        host: 'redis-15041.c12.us-east-1-4.ec2.cloud.redislabs.com',
-        port: 15041
+        host: parsed.REDIS_HOST,
+        port: parsed.REDIS_PORT
     }
 });
 redisClient.connect().catch(err=>console.log(">>>>>",err))
