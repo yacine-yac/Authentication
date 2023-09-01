@@ -19,7 +19,7 @@ class Validation{
         if(!this.filters.isEmail(field))this.error=Object.assign(this.error,message);
     }
     alphabets(field,{message}){
-      if(!this.filters.isAlpha(field))this.error=Object.assign(this.error,message);
+      if(!(/^[A-Za-z\s]+$/.test(field)))this.error=Object.assign(this.error,message);
     }
     alphaNumeric(field,{message}){
         if(!this.filters.isAlphanumeric(field))this.error=Object.assign(this.error,message);
