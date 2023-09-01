@@ -21,7 +21,7 @@ const redisClient=redis.createClient({
     host:parsed.REDIS_HOST,
     port:parsed.REDIS_PORT
 });
-redisClient.connect().catch(err=>console.log(err))
+redisClient.connect().catch(err=>console.log(">>>>>",err))
 redisClient.on('error', function (err) {
     console.log('Could not establish a connection with redis. ' + err);
 });
